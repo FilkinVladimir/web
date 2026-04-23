@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vladimir</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+    :root {
+      --bg:       #0c0c0f;
+      --surface:  #13131a;
+      --border:   #1f1f2e;
+      --text:     #e8e6f0;
+      --muted:    #6b6880;
+      --accent:   #a78bfa;
+      --accent2:  #34d399;
+      --glow:     rgba(167, 139, 250, 0.15);
+    }
+ 
+    html { scroll-behavior: smooth; }
+ 
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+ 
+    /* ── noise texture overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 999;
+    }
+ 
+    /* ── ambient glow ── */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -20vh;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60vw;
+      height: 60vw;
+      background: radial-gradient(circle, rgba(167,139,250,0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+ 
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 1;
+    }
+ 
+    /* ── header ── */
+    header {
+      padding: 5rem 0 3.5rem;
+      opacity: 0;
+      animation: rise 0.8s ease forwards;
+    }
+ 
+    .eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+ 
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 1px;
+      background: var(--accent);
+    }
+ 
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+ 
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+ 
+    .tagline {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 480px;
+    }
+ 
+    /* ── divider ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 2.5rem 0;
+      opacity: 0;
+      animation: rise 0.8s 0.2s ease forwards;
+    }
+ 
+    /* ── section titles ── */
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+ 
+    /* ── stack section ── */
+    .stack {
+      opacity: 0;
+      animation: rise 0.8s 0.35s ease forwards;
+      margin-bottom: 3rem;
+    }
+ 
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+ 
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.75rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 0.72rem;
+      color: var(--muted);
+      transition: border-color 0.2s, color 0.2s;
+    }
+ 
+    .pill:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+ 
+    .pill .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent2);
+      flex-shrink: 0;
+    }
+ 
+    /* ── links section ── */
+    .links {
+      opacity: 0;
+      animation: rise 0.8s 0.5s ease forwards;
+      margin-bottom: 3rem;
+    }
+ 
+    .link-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+ 
+    .link-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+      transition: color 0.2s;
+      group: true;
+    }
+ 
+    .link-item:first-child { border-top: 1px solid var(--border); }
+ 
+    .link-item:hover { color: var(--accent); }
+ 
+    .link-item:hover .link-arrow { transform: translate(3px, -3px); }
+ 
+    .link-title {
+      font-size: 0.9rem;
+    }
+ 
+    .link-desc {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+    }
+ 
+    .link-arrow {
+      font-size: 1rem;
+      color: var(--muted);
+      transition: transform 0.2s, color 0.2s;
+      flex-shrink: 0;
+      margin-left: 1rem;
+    }
+ 
+    .link-item:hover .link-arrow { color: var(--accent); }
+ 
+    /* ── footer ── */
+    footer {
+      padding: 2rem 0 4rem;
+      opacity: 0;
+      animation: rise 0.8s 0.65s ease forwards;
+    }
+ 
+    .footer-text {
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+ 
+    .footer-text span {
+      color: var(--accent2);
+    }
+ 
+    /* ── animations ── */
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+ 
+    <header>
+      <p class="eyebrow">Personal</p>
+      <h1>Vladimir<br /><em>Petrov</em></h1>
+      <p class="tagline">
+        Engineer by day. Homelab tinkerer by night.<br />
+        Building things that run quietly and break rarely.
+      </p>
+    </header>
+ 
+    <div class="divider"></div>
+ 
+    <!-- Stack -->
+    <section class="stack">
+      <p class="section-label">Current Stack</p>
+      <div class="pills">
+        <span class="pill"><span class="dot"></span>Ubuntu Server</span>
+        <span class="pill"><span class="dot"></span>Docker</span>
+        <span class="pill"><span class="dot"></span>WireGuard</span>
+        <span class="pill"><span class="dot"></span>Nextcloud</span>
+        <span class="pill"><span class="dot"></span>Immich</span>
+        <span class="pill"><span class="dot"></span>Pi-hole</span>
+        <span class="pill"><span class="dot"></span>Ollama</span>
+        <span class="pill"><span class="dot"></span>Cloudflare</span>
+      </div>
+    </section>
+ 
+    <!-- Links -->
+    <section class="links">
+      <p class="section-label">Find me</p>
+      <nav class="link-list">
+        <a class="link-item" href="https://github.com/yourusername" target="_blank" rel="noopener">
+          <div>
+            <div class="link-title">GitHub</div>
+            <div class="link-desc">Projects and configs</div>
+          </div>
+          <span class="link-arrow">↗</span>
+        </a>
+        <a class="link-item" href="mailto:you@yourdomain.com">
+          <div>
+            <div class="link-title">Email</div>
+            <div class="link-desc">you@yourdomain.com</div>
+          </div>
+          <span class="link-arrow">↗</span>
+        </a>
+        <!-- Add more links here -->
+      </nav>
+    </section>
+ 
+    <footer>
+      <p class="footer-text">
+        Deployed on <span>Cloudflare Workers</span> · No cookies · No tracking
+      </p>
+    </footer>
+ 
+  </div>
+</body>
+</html>
