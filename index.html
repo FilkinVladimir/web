@@ -164,6 +164,20 @@
       font-size: 0.85rem;
       color: var(--muted);
     }
+    
+    /* ── software ── */
+    .software { list-style: none; max-width: 38em; }
+    .software li { padding: 0.9rem 0; }
+    .software li + li { border-top: 1px solid var(--line); }
+    .software a {
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: underline;
+      text-decoration-color: rgba(167,139,250,0.5);
+      text-underline-offset: 3px;
+    }
+    .software a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+    .software p { margin-top: 0.2rem; color: var(--muted); font-size: 0.95rem; }
 
     /* ── links column ── */
     .links { list-style: none; }
@@ -320,6 +334,23 @@
             <li>Thermal buckling</li>
             <li>Multiphysics coupling</li>
             <li>openCFS</li>
+          </ul>
+        </section>
+         <section class="research">
+          <h2>Software</h2>
+          <ul class="software">
+            <li>
+              <a href="https://gitlab.com/openCFS/cfs" target="_blank" rel="noopener">openCFS</a>
+              <p>Open-source finite element framework for multiphysics modelling and simulation.</p>
+            </li>
+            <li>
+              <a href="https://gitlab.tuwien.ac.at/mec/ShellX" target="_blank" rel="noopener">ShellX</a>
+              <p>Open-source finite element code for nonlinear shell mechanics.</p>
+            </li>
+            <li>
+              <a href="https://gitlab.tuwien.ac.at/mec/magbuck" target="_blank" rel="noopener">MagBuck</a>
+              <p>Coupled electromagnetic-thermal-mechanical simulation of induction-heating buckling.</p>
+            </li>
           </ul>
         </section>
 
