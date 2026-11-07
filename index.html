@@ -3,12 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vladimir</title>
+  <title>Vladimir Filkin</title>
+  <meta name="description" content="Vladimir Filkin — coupled electromagnetic-thermal-mechanical modelling of induction heating. Publications and profiles." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- Structured data: helps search engines connect this page to your profiles.
+       Add LinkedIn / ResearchGate / Scholar URLs to "sameAs" once you uncomment them below. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Vladimir Filkin",
+    "url": "https://jonnyblack.uk",
+    "affiliation": { "@type": "Organization", "name": "TU Wien, Institute of Mechanics and Mechatronics" },
+    "sameAs": [
+      "https://orcid.org/0000-0001-5925-8418",
+      "https://github.com/filkinvladimir",
+      "https://scholar.google.com/citations?user=uG6ljooAAAAJ"
+    ]
+  }
+  </script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
+
     :root {
       --bg:       #0c0c0f;
       --surface:  #13131a;
@@ -17,11 +36,10 @@
       --muted:    #6b6880;
       --accent:   #a78bfa;
       --accent2:  #34d399;
-      --glow:     rgba(167, 139, 250, 0.15);
     }
- 
+
     html { scroll-behavior: smooth; }
- 
+
     body {
       background: var(--bg);
       color: var(--text);
@@ -30,8 +48,7 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
- 
-    /* ── noise texture overlay ── */
+
     body::before {
       content: '';
       position: fixed;
@@ -41,8 +58,7 @@
       pointer-events: none;
       z-index: 999;
     }
- 
-    /* ── ambient glow ── */
+
     body::after {
       content: '';
       position: fixed;
@@ -55,22 +71,24 @@
       pointer-events: none;
       z-index: 0;
     }
- 
+
     .container {
-      max-width: 680px;
+      max-width: 720px;
       margin: 0 auto;
       padding: 0 2rem;
       position: relative;
       z-index: 1;
     }
- 
+
+    a { color: inherit; }
+
     /* ── header ── */
     header {
-      padding: 5rem 0 3.5rem;
+      padding: 5rem 0 3rem;
       opacity: 0;
       animation: rise 0.8s ease forwards;
     }
- 
+
     .eyebrow {
       font-size: 0.7rem;
       letter-spacing: 0.2em;
@@ -81,7 +99,7 @@
       align-items: center;
       gap: 0.75rem;
     }
- 
+
     .eyebrow::before {
       content: '';
       display: block;
@@ -89,40 +107,45 @@
       height: 1px;
       background: var(--accent);
     }
- 
+
     h1 {
       font-family: 'DM Serif Display', serif;
       font-size: clamp(3rem, 8vw, 5rem);
       font-weight: 400;
       line-height: 1.05;
       letter-spacing: -0.02em;
-      color: var(--text);
-      margin-bottom: 0.25rem;
     }
- 
-    h1 em {
-      font-style: italic;
-      color: var(--accent);
-    }
- 
+
+    h1 em { font-style: italic; color: var(--accent); }
+
     .tagline {
       margin-top: 1.5rem;
       font-size: 0.85rem;
       color: var(--muted);
       line-height: 1.8;
-      max-width: 480px;
+      max-width: 540px;
     }
- 
-    /* ── divider ── */
+
+    .tagline strong { color: var(--text); font-weight: 400; }
+
+    /* ── sections ── */
+    section {
+      margin-bottom: 3.5rem;
+      opacity: 0;
+      animation: rise 0.8s ease forwards;
+    }
+    section:nth-of-type(1) { animation-delay: 0.15s; }
+    section:nth-of-type(2) { animation-delay: 0.25s; }
+    section:nth-of-type(3) { animation-delay: 0.35s; }
+    section:nth-of-type(4) { animation-delay: 0.45s; }
+    section:nth-of-type(5) { animation-delay: 0.55s; }
+
     .divider {
       height: 1px;
       background: var(--border);
-      margin: 2.5rem 0;
-      opacity: 0;
-      animation: rise 0.8s 0.2s ease forwards;
+      margin: 0 0 3rem;
     }
- 
-    /* ── section titles ── */
+
     .section-label {
       font-size: 0.65rem;
       letter-spacing: 0.25em;
@@ -130,20 +153,20 @@
       color: var(--muted);
       margin-bottom: 1.5rem;
     }
- 
-    /* ── stack section ── */
-    .stack {
-      opacity: 0;
-      animation: rise 0.8s 0.35s ease forwards;
-      margin-bottom: 3rem;
+
+
+    /* ── research ── */
+    .prose {
+      font-size: 0.8rem;
+      line-height: 1.85;
+      color: var(--muted);
     }
- 
-    .pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
- 
+    .prose p + p { margin-top: 1rem; }
+    .prose a { color: var(--text); text-decoration-color: var(--border); text-underline-offset: 3px; }
+    .prose a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
+    .pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }
+
     .pill {
       display: inline-flex;
       align-items: center;
@@ -152,37 +175,59 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 4px;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       color: var(--muted);
-      transition: border-color 0.2s, color 0.2s;
     }
- 
-    .pill:hover {
-      border-color: var(--accent);
+    .pill .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent2); flex-shrink: 0; }
+
+    /* ── publications ── */
+    .pub-list { list-style: none; }
+
+    .pub {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 3.25rem 1fr;
+      gap: 0 1rem;
+    }
+    .pub:first-child { border-top: 1px solid var(--border); }
+
+    .pub-year { font-size: 0.75rem; color: var(--accent2); padding-top: 0.1rem; }
+
+    .pub-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.05rem;
+      line-height: 1.35;
       color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
     }
- 
-    .pill .dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--accent2);
-      flex-shrink: 0;
+    a.pub-title:hover { color: var(--accent); }
+
+    .pub-meta {
+      font-size: 0.7rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-top: 0.35rem;
     }
- 
-    /* ── links section ── */
-    .links {
-      opacity: 0;
-      animation: rise 0.8s 0.5s ease forwards;
-      margin-bottom: 3rem;
+    .pub-meta .me { color: var(--text); }
+    .pub-meta .venue { font-style: italic; }
+
+    .pub-links { margin-top: 0.4rem; display: flex; flex-wrap: wrap; gap: 0.9rem; }
+    .pub-links a {
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
     }
- 
-    .link-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
- 
+    .pub-links a:hover { color: var(--accent); }
+    .pub-links .oa { color: var(--accent2); }
+
+    /* ── profile links ── */
+    .link-list { display: flex; flex-direction: column; }
+
     .link-item {
       display: flex;
       align-items: center;
@@ -192,25 +237,13 @@
       text-decoration: none;
       color: var(--text);
       transition: color 0.2s;
-      group: true;
     }
- 
     .link-item:first-child { border-top: 1px solid var(--border); }
- 
     .link-item:hover { color: var(--accent); }
- 
-    .link-item:hover .link-arrow { transform: translate(3px, -3px); }
- 
-    .link-title {
-      font-size: 0.9rem;
-    }
- 
-    .link-desc {
-      font-size: 0.7rem;
-      color: var(--muted);
-      margin-top: 0.15rem;
-    }
- 
+
+    .link-title { font-size: 0.9rem; }
+    .link-desc  { font-size: 0.7rem; color: var(--muted); margin-top: 0.15rem; }
+
     .link-arrow {
       font-size: 1rem;
       color: var(--muted);
@@ -218,83 +251,257 @@
       flex-shrink: 0;
       margin-left: 1rem;
     }
- 
-    .link-item:hover .link-arrow { color: var(--accent); }
- 
+    .link-item:hover .link-arrow { transform: translate(3px, -3px); color: var(--accent); }
+
     /* ── footer ── */
-    footer {
-      padding: 2rem 0 4rem;
-      opacity: 0;
-      animation: rise 0.8s 0.65s ease forwards;
-    }
- 
-    .footer-text {
-      font-size: 0.65rem;
-      color: var(--muted);
-      letter-spacing: 0.05em;
-    }
- 
-    .footer-text span {
-      color: var(--accent2);
-    }
- 
-    /* ── animations ── */
+    footer { padding: 1rem 0 4rem; }
+    .footer-text { font-size: 0.65rem; color: var(--muted); letter-spacing: 0.05em; }
+    .footer-text span { color: var(--accent2); }
+
     @keyframes rise {
       from { opacity: 0; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      header, section { animation: none; opacity: 1; }
+    }
+
+    @media (max-width: 520px) {
+      .container { padding: 0 1.25rem; }
+      .pub { grid-template-columns: 1fr; }
+      .pub-year { margin-bottom: 0.25rem; }
     }
   </style>
 </head>
 <body>
   <div class="container">
- 
+
     <header>
-      <p class="eyebrow">Personal</p>
+      <p class="eyebrow">Computational Mechanics · Electromagnetics</p>
       <h1>Vladimir<br /><em>Filkin</em></h1>
       <p class="tagline">
-        Engineer by day. Homelab tinkerer by night.<br />
-        Building things that run quietly and break rarely.
+        <strong>Doctoral researcher</strong> at the Institute of Mechanics and Mechatronics, TU Wien.<br />
+        Coupled electromagnetic–thermal–mechanical modelling of induction heating.
       </p>
     </header>
- 
+
     <div class="divider"></div>
- 
-    <!-- Stack -->
-    <section class="stack">
-      <p class="section-label">Current Stack</p>
+
+    <!-- Research -->
+    <section>
+      <p class="section-label">Research</p>
+      <div class="prose">
+        <p>
+          Thin steel sheets and belts buckle when heated by induction, and the buckled shape
+          changes the electromagnetic field and, with it, the temperature distribution. My work
+          builds finite element models that resolve this two-way coupling: an efficient structural
+          shell formulation for the sheet, combined with continuum eddy-current and heat-conduction
+          models, together with analytical models that explain the post-buckling behaviour.
+        </p>
+        <p>
+          Part of the FFG BRIDGE project
+          <a href="https://projekte.ffg.at/projekt/4814745" target="_blank" rel="noopener">Induction-Buckling</a>
+          in cooperation with Berndorf Band GmbH.
+        </p>
+      </div>
       <div class="pills">
-        <span class="pill"><span class="dot"></span>Ubuntu Server</span>
-        <span class="pill"><span class="dot"></span>Docker</span>
-        <span class="pill"><span class="dot"></span>WireGuard</span>
-        <span class="pill"><span class="dot"></span>Nextcloud</span>
-        <span class="pill"><span class="dot"></span>Immich</span>
-        <span class="pill"><span class="dot"></span>Pi-hole</span>
-        <span class="pill"><span class="dot"></span>Ollama</span>
-        <span class="pill"><span class="dot"></span>Cloudflare</span>
+        <span class="pill"><span class="dot"></span>Induction heating</span>
+        <span class="pill"><span class="dot"></span>Nonlinear FEM</span>
+        <span class="pill"><span class="dot"></span>Shell theory</span>
+        <span class="pill"><span class="dot"></span>Thermal buckling</span>
+        <span class="pill"><span class="dot"></span>Multiphysics coupling</span>
+        <span class="pill"><span class="dot"></span>openCFS</span>
       </div>
     </section>
- 
-    <!-- Links -->
-    <section class="links">
-      <p class="section-label">Find me</p>
-      <nav class="link-list">
-        <a class="link-item" href="https://github.com/filkinvladimir" target="_blank" rel="noopener">
+
+    <!-- Publications -->
+    <section>
+      <p class="section-label">Publications</p>
+      <ul class="pub-list">
+        <li class="pub">
+          <span class="pub-year">2026</span>
           <div>
-            <div class="link-title">GitHub</div>
-            <div class="link-desc">Projects and configs</div>
+            <a class="pub-title" href="https://doi.org/10.1007/s00707-026-04829-9" target="_blank" rel="noopener">
+              Thin-layer formulation for non-conforming interfaces in FEM
+            </a>
+            <p class="pub-meta">
+              <span class="me">V. Filkin</span>, I. Singer, F. Toth ·
+              <span class="venue">Acta Mechanica</span> 237(10), 6529–6542
+            </p>
+            <div class="pub-links">
+              <a href="https://doi.org/10.1007/s00707-026-04829-9" target="_blank" rel="noopener">DOI ↗</a>
+              <a class="oa" href="https://repositum.tuwien.at/handle/20.500.12708/229971" target="_blank" rel="noopener">Open access ↗</a>
+            </div>
+          </div>
+        </li>
+
+        <li class="pub">
+          <span class="pub-year">2026</span>
+          <div>
+            <a class="pub-title" href="https://doi.org/10.1002/nme.70410" target="_blank" rel="noopener">
+              Fully Coupled Electromagnetic-Thermal-Mechanical Model for Induction Heating of Thin Steel Sheets With the Presence of Thermal Buckling
+            </a>
+            <p class="pub-meta">
+              <span class="me">V. Filkin</span>, Y. Vetyukov, F. Toth ·
+              <span class="venue">International Journal for Numerical Methods in Engineering</span> 127(16), e70410
+            </p>
+            <div class="pub-links">
+              <a href="https://doi.org/10.1002/nme.70410" target="_blank" rel="noopener">DOI ↗</a>
+              <a class="oa" href="https://repositum.tuwien.at/handle/20.500.12708/231017" target="_blank" rel="noopener">Open access ↗</a>
+            </div>
+          </div>
+        </li>
+
+        <li class="pub">
+          <span class="pub-year">2025</span>
+          <div>
+            <a class="pub-title" href="https://doi.org/10.1007/s00707-024-04208-2" target="_blank" rel="noopener">
+              Analytical model of induction heating buckling of a beam
+            </a>
+            <p class="pub-meta">
+              <span class="me">V. Filkin</span>, Y. Vetyukov, F. Toth ·
+              <span class="venue">Acta Mechanica</span>
+            </p>
+            <div class="pub-links">
+              <a href="https://doi.org/10.1007/s00707-024-04208-2" target="_blank" rel="noopener">DOI ↗</a>
+              <a class="oa" href="https://repositum.tuwien.at/handle/20.500.12708/215206" target="_blank" rel="noopener">Open access ↗</a>
+            </div>
+          </div>
+        </li>
+
+        <li class="pub">
+          <span class="pub-year">2023</span>
+          <div>
+            <a class="pub-title" href="https://doi.org/10.1002/pamm.202300151" target="_blank" rel="noopener">
+              Modelling the post-buckling behaviour of steel sheets under induction heating
+            </a>
+            <p class="pub-meta">
+              <span class="me">V. Filkin</span>, Y. Vetyukov, B. Heinrich, F. Toth ·
+              <span class="venue">Proceedings in Applied Mathematics and Mechanics</span> 23(2), e202300151
+            </p>
+            <div class="pub-links">
+              <a href="https://doi.org/10.1002/pamm.202300151" target="_blank" rel="noopener">DOI ↗</a>
+              <a class="oa" href="https://repositum.tuwien.at/handle/20.500.12708/191957" target="_blank" rel="noopener">Open access ↗</a>
+            </div>
+          </div>
+        </li>
+
+        <li class="pub">
+          <span class="pub-year">2021</span>
+          <div>
+            <a class="pub-title" href="https://doi.org/10.1088/1361-6579/ac2790" target="_blank" rel="noopener">
+              Can ionic concentration changes due to mechanical deformation be responsible for the neurostimulation caused by focused ultrasound? A simulation study
+            </a>
+            <p class="pub-meta">
+              <span class="me">V. Filkin</span>, I. Kuznetsov, O. Antonova, I. Tarotin, A. Nemov, K. Aristovich ·
+              <span class="venue">Physiological Measurement</span> 42(10), 105005
+            </p>
+            <div class="pub-links">
+              <a href="https://doi.org/10.1088/1361-6579/ac2790" target="_blank" rel="noopener">DOI ↗</a>
+              <a class="oa" href="https://discovery.ucl.ac.uk/10135209/" target="_blank" rel="noopener">Open access ↗</a>
+            </div>
+          </div>
+        </li>
+
+        <li class="pub">
+          <span class="pub-year">2016</span>
+          <div>
+            <a class="pub-title" href="https://doi.org/10.1088/1742-6596/772/1/012041" target="_blank" rel="noopener">
+              Neural network modeling of conditions of destruction of wood plank based on measurements
+            </a>
+            <p class="pub-meta">
+              <span class="me">V. Filkin</span>, T. Kaverzneva, T. Lazovskaya, E. Lukinskiy, A. Petrov, O. Stolyarov, D. Tarkhov ·
+              <span class="venue">Journal of Physics: Conference Series</span> 772, 012041
+            </p>
+            <div class="pub-links">
+              <a href="https://doi.org/10.1088/1742-6596/772/1/012041" target="_blank" rel="noopener">DOI ↗</a>
+              <a class="oa" href="https://iopscience.iop.org/article/10.1088/1742-6596/772/1/012041/pdf" target="_blank" rel="noopener">Open access ↗</a>
+            </div>
+          </div>
+        </li>
+        <li class="pub">
+          <span class="pub-year">2016</span>
+          <div>
+            <a class="pub-title" href="https://ceur-ws.org/Vol-1763/paper01.pdf" target="_blank" rel="noopener">
+              Multilayer neural network models based on experimental data for processes of sample deformation and destruction
+            </a>
+            <p class="pub-meta">
+              A. Vasilyev, D. Tarkhov, I. Bolgov, T. Kaverzneva, S. Kolesova, T. Lazovskaya, E. Lukinskiy, A. Petrov, <span class="me">V. Filkin</span> ·
+              <span class="venue">CEUR Workshop Proceedings</span> 1763, 6–14 (in Russian)
+            </p>
+            <div class="pub-links">
+              <a href="https://ceur-ws.org/Vol-1763/" target="_blank" rel="noopener">CEUR ↗</a>
+              <a class="oa" href="https://ceur-ws.org/Vol-1763/paper01.pdf" target="_blank" rel="noopener">Open access ↗</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- In the news — uncomment and fill once you have links
+    <section>
+      <p class="section-label">In the news</p>
+      <nav class="link-list">
+        <a class="link-item" href="URL" target="_blank" rel="noopener">
+          <div>
+            <div class="link-title">Article headline</div>
+            <div class="link-desc">Outlet · Month Year</div>
           </div>
           <span class="link-arrow">↗</span>
         </a>
-        <!-- Add more links here -->
       </nav>
     </section>
- 
+    -->
+
+    <!-- Profiles -->
+    <section>
+      <p class="section-label">Profiles</p>
+      <nav class="link-list">
+        <a class="link-item" href="https://orcid.org/0000-0001-5925-8418" target="_blank" rel="noopener">
+          <div>
+            <div class="link-title">ORCID</div>
+            <div class="link-desc">0000-0001-5925-8418</div>
+          </div>
+          <span class="link-arrow">↗</span>
+        </a>
+        <a class="link-item" href="www.linkedin.com/in/vladimir-filkin" target="_blank" rel="noopener">
+          <div>
+            <div class="link-title">LinkedIn</div>
+            <div class="link-desc">Professional profile</div>
+          </div>
+          <span class="link-arrow">↗</span>
+        </a>
+        <a class="link-item" href="https://www.researchgate.net/profile/Vladimir-Filkin" target="_blank" rel="noopener">
+          <div>
+            <div class="link-title">ResearchGate</div>
+            <div class="link-desc">Papers and full texts</div>
+          </div>
+          <span class="link-arrow">↗</span>
+        </a>
+        <a class="link-item" href="https://scholar.google.com/citations?user=uG6ljooAAAAJ" target="_blank" rel="noopener">
+          <div>
+            <div class="link-title">Google Scholar</div>
+            <div class="link-desc">Research</div>
+          </div>
+          <span class="link-arrow">↗</span>
+        </a>
+        <a class="link-item" href="https://github.com/filkinvladimir" target="_blank" rel="noopener">
+          <div>
+            <div class="link-title">GitHub</div>
+            <div class="link-desc">Code and projects</div>
+          </div>
+          <span class="link-arrow">↗</span>
+        </a>
+      </nav>
+    </section>
+
     <footer>
       <p class="footer-text">
-        Deployed on <span>GitHub</span> · No cookies · No tracking
+        Static page on <span>GitHub Pages</span> · No cookies · No tracking
       </p>
     </footer>
- 
+
   </div>
 </body>
 </html>
